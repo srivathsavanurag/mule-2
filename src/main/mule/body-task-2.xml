@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4aeb4a43-0513-4ab9-bd79-44ff50134448" >
+		<http:listener-connection host="localhost" port="8083" />
+	</http:listener-config>
+	<flow name="body-task-2Flow" doc:id="88d1b128-7134-4707-838b-ec9b441cb44c" >
+		<http:listener doc:name="Listener" doc:id="c2582722-e4fd-4315-81bd-633e4aeba648" config-ref="HTTP_Listener_config" path="/body"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6f82c48e-486f-40a1-9b5a-96f7c5ebddf3" message='#[payload.freight_forwarder ++ payload.container_type]'/>
+	</flow>
+</mule>
